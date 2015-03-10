@@ -141,7 +141,9 @@ $collection = repertoire::parcoursRepertoire($path, $repertoire, $collection);
 /* -----
 		View
 		------ */
-
+echo '<html><head><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" type="text/css" href="flaticon/flaticon.css">
+<link rel="stylesheet" type="text/css" href="monnuage.css"></head>';
 echo '<div id="tableau">';
 
 
@@ -157,24 +159,24 @@ foreach ($collection as $key => $value) {
 		$value = repertoire::deleteRetourElement($value);
 		echo "<div id='dossier'  link=$key style='display : none'>";
 		echo "<div class='headTab'><div class='col-name'>Nom</div><div class='col-date'>Date</div><div class='col-type'>Type</div><div class='col-taille'>Taille</div></div>";
-		echo "<div class='headRetour' target='$retour'><div class='col-name'>Retour</div><div class='col-date'></div><div class='col-type'></div><div class='col-taille'></div></div>";
+		echo "<div class='headRetour' target='$retour'><div class='col-name'>Retour</div></div>";
 	}
 		foreach ($value as $keyValue) {
 			
 							if(is_dir($key.$keyValue)){
 								$info = repertoire::getInfoDossier($key.$keyValue);
-								echo "<div class='line dossier flaticon-open127'>";
-								echo "<div class='col-name' id='linkdossier' compteur=$c link=$key$keyValue/>$keyValue</div>";
-								echo "<div class='col-date'>".$info['date']."</div>";
-								echo "<div class='col-type'>Dossier de fichier</div>";
-								echo "<div class='col-taille'>".$info['taille']."</div>";
+								echo "<div class='line dossier '>";
+								echo "<div class='col-name flaticon-open127' id='linkdossier' compteur=$c link=$key$keyValue/>$keyValue</div>";
+								//echo "<div class='col-date'>".$info['date']."</div>";
+								echo "<div class='col-type'>Repertoire</div>";
+								//echo "<div class='col-taille'>".$info['taille']."</div>";
 
 								echo "</div>";
 							}
 							else{
 								$info = repertoire::getInfoFichier($key.$keyValue);
-								echo "<div id='menuFile' class='line fichier ".$info['classExtension']."' lien='".$key.$keyValue."' title='Clic droit pour afficher les actions'>";
-								echo "<div class='col-name'>$keyValue</div>";
+								echo "<div id='menuFile' class='line fichier ' lien='".$key.$keyValue."' title='Clic droit pour afficher les actions'>";
+								echo "<div class='col-name ".$info['classExtension']."'>$keyValue</div>";
 								echo "<div class='col-date'>".$info['date']."</div>";
 								echo "<div class='col-type'>".$info['type']."</div>";
 								echo "<div class='col-taille'>".$info['taille']."</div>";
@@ -198,10 +200,10 @@ echo '</div>';
 	<div id="streaming" lien="" class="linePop">Streaming</div>
 </div>
 
-<link rel="stylesheet" type="text/css" href="flaticon/flaticon.css">
-<link rel="stylesheet" type="text/css" href="monnuage.css">
+
 <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 <script src="monnuage.js"></script>
+</html>
 
 
 
