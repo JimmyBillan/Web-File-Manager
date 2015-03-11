@@ -1,5 +1,9 @@
 <?php
 
+/* -----
+		Controlleur
+		------ */
+
 class repertoire
 {
 	var $_repList;
@@ -125,9 +129,10 @@ class repertoire
 
 $root = realpath($_SERVER["DOCUMENT_ROOT"]);
 
+//$path : On definit le chemin vers le repertoire principal
 $path = 'repertoire';
 
-$repertoire = scandir('repertoire'); //repertoire Mere
+$repertoire = scandir($path);
 $collection = array();
 
 
@@ -141,6 +146,8 @@ $collection = repertoire::parcoursRepertoire($path, $repertoire, $collection);
 /* -----
 		View
 		------ */
+
+
 echo '<html><head><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link rel="stylesheet" type="text/css" href="flaticon/flaticon.css">
 <link rel="stylesheet" type="text/css" href="monnuage.css"></head>';
@@ -188,8 +195,7 @@ foreach ($collection as $key => $value) {
 		echo "</div>";
 	
 	
-	$c++;
-	
+	$c++;	
 }
 echo '</div>';
 ?>
